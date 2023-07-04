@@ -1,9 +1,13 @@
 import React from 'react';
 
-const ContactList = ({ contacts, deleteContact }) => {
+const ContactList = ({ contacts, filter, deleteContact }) => {
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <ul>
-      {contacts.map((contact) => (
+      {filteredContacts.map((contact) => (
         <li key={contact.id}>
           {contact.name}: {contact.number}
           <button onClick={() => deleteContact(contact.id)}>Delete</button>
